@@ -16,6 +16,10 @@ To test the Agent:
 application/json" -d '{"message": "can you run the tool properly? Make
 up params and test"}' http://0.0.0.0:81/test-agent`
 
+The agent is a structured chat agent, the example tool in
+`services/api/toolset/empty_tool.py` is an asynchronous tool that takes
+multiple inputs.
+
 ## Prod
 
 Change `docker-compose.prod.yml` and add your domain in:
