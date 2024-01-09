@@ -11,6 +11,11 @@ To smoke test:
 Note dev is running on port 81 because I had some other service running on
 port 80 already. 
 
+To test the Agent:
+`curl -H Host:fastapi.localhost -X POST -H "Content-Type:
+application/json" -d '{"message": "can you run the tool properly? Make
+up params and test"}' http://0.0.0.0:81/test-agent`
+
 ## Prod
 
 Change `docker-compose.prod.yml` and add your domain in:
