@@ -7,7 +7,7 @@ import logging
 
 from langchain import hub
 from langchain_openai import ChatOpenAI
-from langchain.agents import AgentExecutor, create_react_agent
+from langchain.agents import AgentExecutor, create_structured_chat_agent
 
 from toolset.empty_tool import EmptyTool
 
@@ -37,9 +37,9 @@ async def execute_test_agent(msg: str) -> dict[str, Any]:
     empty_tool = EmptyTool()
     tools = [empty_tool]
 
-    ## Probably synchronous code need to create our own prompts
+    ## Probably synchronous code need to create our own prompts based on this one
     prompt = hub.pull("hwchase17/structured-chat-agent")
-    agent = create_react_agent(llm, tools, prompt)
+    agent = create_structured_chat_agent(llm, tools, prompt)
 
     agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
 

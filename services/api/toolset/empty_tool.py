@@ -5,7 +5,7 @@ from langchain.tools import BaseTool
 from pydantic import BaseModel, Field
 
 class EmptyToolQuerySchema(BaseModel):
-    firs_param: str = Field(description="The first parameter of the tool")
+    first_param: str = Field(description="The first parameter of the tool")
     second_param: int = Field(description="The second parameter of the tool")
 
 class EmptyTool(BaseTool):
