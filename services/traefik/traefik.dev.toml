@@ -1,0 +1,15 @@
+[entryPoints]
+  [entryPoints.web]
+    address = ":81"
+
+[api]
+insecure = true
+
+[log]
+level = "DEBUG"
+
+[accessLog]
+
+[providers]
+  [providers.docker]
+    exposedByDefault = false

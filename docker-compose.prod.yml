@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+       context: ./services/api
+    command: gunicorn main:app --bind 0.0.0.0:5000 -w 4 -k uvicorn.workers.UvicornWorker
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    expose:
+      - 5000
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.fastapi.rule=Host(`sub.domain.com`)"
+      - "traefik.http.routers.fastapi.tls=true"
+      - "traefik.http.routers.fastapi.tls.certresolver=letsencrypt"
+
+  traefik:
+    image: traefik:v2.10.7
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "./services/traefik/traefik.prod.toml:/etc/traefik/traefik.toml"
+      - "./logs:/home/app/logs"
